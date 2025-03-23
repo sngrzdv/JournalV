@@ -1,0 +1,41 @@
+﻿@model IEnumerable<JournalV.Models.Visit>
+
+@{
+    ViewData["Title"] = "Журнал посещений";
+}
+
+<h1>Журнал посещений</h1>
+<form asp-action="Index" method="get">
+    <input type="text" name="searchString" value="@ViewBag.CurrentFilter" placeholder="Поиск..." />
+    <input type="submit" value="Поиск" />
+</form>
+
+<p>
+    <a asp-action="Create">Добавить запись</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th><a asp-action="Index" asp-route-sortOrder="@ViewBag.DateSortParm">Дата посещения</a></th>
+            <th>Питомец</th>
+            <th>Ветеринар</th>
+            <th>Процедура</th>
+            <th>Заметки</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var visit in Model)
+        {
+            <tr>
+                <td>@visit.VisitDate.ToShortDateString()</td>
+                <td>@visit.Pet.Name</td>
+                <td>@visit.Veterinarian.FullName</td>
+                <td>@visit.Procedure.Name</td>
+                <td>@visit.Notes</td>
+            </tr>
+        }
+        }
+    </tbody>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+</table>

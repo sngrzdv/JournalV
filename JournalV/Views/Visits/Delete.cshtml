@@ -1,0 +1,35 @@
+﻿@model JournalV.Models.Visit
+
+@{
+    ViewData["Title"] = "Удалить посещение";
+}
+
+<h1>Удалить посещение</h1>
+
+<h3>Вы уверены, что хотите удалить это посещение?</h3>
+<div>
+    <h4>Посещение</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Дата посещения</dt>
+        <dd class="col-sm-10">@Model.VisitDate.ToShortDateString()</dd>
+
+        <dt class="col-sm-2">Питомец</dt>
+        <dd class="col-sm-10">@Model.Pet.Name</dd>
+
+        <dt class="col-sm-2">Ветеринар</dt>
+        <dd class="col-sm-10">@Model.Veterinarian.FullName</dd>
+
+        <dt class="col-sm-2">Процедура</dt>
+        <dd class="col-sm-10">@Model.Procedure.Name</dd>
+
+        <dt class="col-sm-2">Заметки</dt>
+        <dd class="col-sm-10">@Model.Notes</dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Удалить" class="btn btn-danger" /> |
+        <a asp-action="Index">Назад к списку</a>
+    </form>
+</div>
